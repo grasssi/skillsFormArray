@@ -1,0 +1,59 @@
+<form [formGroup]="skillsForm" (ngSubmit)="onSubmit()" class="offset-2 col-8">
+
+  <div class="form-group">
+    <label for="name">Name </label>
+    <input type="text" id="name" name="name" formControlName="name" class="form-control"
+      placeholder="Taper votre nom Plz"
+      [ngClass]="{'is-valid': submitted && !skillsForm.controls.name.errors ,'is-invalid': submitted && skillsForm.controls.name.errors}">
+    <div class="invalid-feedback d-block" *ngIf="submitted && skillsForm.controls.name.hasError('required')">Vérifiez
+      votre saisie</div>
+
+  </div>
+  <div class="form-group row grassi" style="margin-top: 15px">
+    <label class="col-1">
+      Skills:
+    </label>
+    <button type="button" (click)="addSkills()" class="btn btn-success col-2">Add</button>
+    <button type="button" (click)="clearSkills()" class="btn btn-danger col-2">Clear All</button>
+  </div>
+  <div formArrayName="skills">
+    <div *ngFor="let skill of skills.controls; let i=index">
+      <div [formGroupName]="i" class="row">
+        <div class="form-group col-4">
+          <label for="skillsName">
+            {{i}}
+            skill name :
+
+          </label>
+
+          <input type="text" formControlName="skill" class="form-control" id="sillsName"
+          [ngClass]="{'is-valid': submitted && !skillsForm.controls.skills.errors ,'is-invalid': submitted && skillsForm.controls.skills.errors}">
+          <div class="invalid-feedback d-block" *ngIf="submitted && skillsForm.controls.skills.hasError('required')">
+            Vérifiez votre saisie</div>
+
+        </div>
+        <div class="form-group col-4">
+          <label for="skillsExp">
+            exp:
+          </label>
+          <input type="text" formControlName="exp" class="form-control" id="skillsExp">
+        </div>
+        <div class="col-4">
+
+
+          <button (click)="removeSkill(i)" class="btn btn-danger mt-4">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="margin-top:5px">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </p>
+
+</form>
+
+
+
+
+{{ skillsForm.value | json}}
