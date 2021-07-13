@@ -39,7 +39,8 @@ export class AddskillsComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-
+    
+console.log('Holaa==',this.skills.controls[0]?.get('skill')?.valid)
     this.submitted = true;
     if (this.skillsForm.valid) {
       console.log(this.skillsForm.value);
