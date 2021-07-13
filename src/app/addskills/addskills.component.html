@@ -13,7 +13,7 @@
     <label class="col-1">
       Skills:
     </label>
-    <button type="button" (click)="addSkills()" class="btn btn-success col-2">Add</button>
+    <button type="button" (click)="addSkills()" class="btn btn-success col-2" [disabled]="!submitted">Add</button>
     <button type="button" (click)="clearSkills()" class="btn btn-danger col-2">Clear All</button>
   </div>
   <div formArrayName="skills">
