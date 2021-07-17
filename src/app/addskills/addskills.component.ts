@@ -38,8 +38,8 @@ export class AddskillsComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  onSubmit() {
 
+  onSubmit() {
     this.submitted = true;
     if (this.skillsForm.valid) {
       console.log(this.skillsForm.value);
@@ -49,7 +49,14 @@ export class AddskillsComponent implements OnInit {
       registartions.push(this.skillsForm.value)
       //registartions.splice(this.skillsForm.get("name")?.value, 1, this.skillsForm.value);
       localStorage.setItem('registrations', JSON.stringify(registartions))
+      // clear data
       this.skillsForm.reset();
+      // clear skills
+      this.clearSkills();
+      // add one skills
+      this.addSkills();
+      //  reset submitted to false
+      this.submitted = false;
     }
   }
 }

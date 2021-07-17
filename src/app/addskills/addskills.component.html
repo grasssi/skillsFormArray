@@ -19,16 +19,15 @@
   <div formArrayName="skills">
     <div *ngFor="let skill of skills.controls; let i=index">
       <div [formGroupName]="i" class="row">
-        <div class="form-group col-4">
-          <label for="skillsName">
+        <div class="form-group col-4" >
+          <label for="skillsName"  >
             {{i}}
             skill name :
+                   </label>
 
-          </label>
-
-          <input type="text" formControlName="skill" class="form-control" id="sillsName"
-          [ngClass]="{'is-valid': submitted && !skillsForm.controls.skills.errors ,'is-invalid': submitted && skillsForm.controls.skills.errors}">
-          <div class="invalid-feedback d-block" *ngIf="submitted && skillsForm.controls.skills.hasError('required')">
+          <input type="text" formControlName="skill" class="form-control" id="sillsName" placeholder="Taper votre ...."
+          [ngClass]="{'is-valid': submitted && skills.controls[i]?.get('skill')?.valid ,'is-invalid': submitted && ! skills.controls[i]?.get('skill')?.valid}">
+          <div class="invalid-feedback d-block" *ngIf="submitted && !skills.controls[i]?.get('skill')?.valid">
             Vérifiez votre saisie</div>
 
         </div>
@@ -36,7 +35,10 @@
           <label for="skillsExp">
             exp:
           </label>
-          <input type="text" formControlName="exp" class="form-control" id="skillsExp">
+          <input type="text" formControlName="exp" class="form-control" id="skillsExp"
+          [ngClass]="{'is-valid': submitted && skills.controls[i]?.get('exp')?.valid ,'is-invalid': submitted && !skills.controls[i]?.get('exp')?.valid}">
+          <div class="invalid-feedback d-block" *ngIf="submitted && !skills.controls[i]?.get('exp')?.valid">
+            Vérifiez votre saisie</div>
         </div>
         <div class="col-4">
 
@@ -48,6 +50,7 @@
   </div>
 
   <p class="margin-top:5px">
+    <!-- [disabled]="skillsForm.invalid" -->
     <button type="submit" class="btn btn-primary">Submit</button>
   </p>
 
